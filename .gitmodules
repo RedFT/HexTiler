@@ -1,0 +1,3 @@
+[submodule "hexy"]
+	path = hexy
+	url = https://github.com/hexyteam/hexy
