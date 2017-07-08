@@ -24,7 +24,6 @@ def make_hex_surface(color, radius, border_color=(100, 100, 100), border=True, h
 
 
     points[points[:, 1] == height, 1] = height -1
-    print points
 
     minx= np.min(points[:, 0])
     maxx= np.max(points[:, 0])
@@ -32,7 +31,6 @@ def make_hex_surface(color, radius, border_color=(100, 100, 100), border=True, h
     maxy= np.max(points[:, 1])
 
     size = np.array([maxx - minx + 1, maxy - miny + 1])
-    print size
     surface = pg.Surface(size)
     surface.set_colorkey((0, 0, 0))
     if len(color) >= 4:

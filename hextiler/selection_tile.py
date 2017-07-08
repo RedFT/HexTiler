@@ -1,6 +1,7 @@
 import numpy as np
+
 import hexy as hx
-from draw import make_hex_surface
+from hextiler.draw import make_hex_surface
 
 
 class SelectionTile(hx.HexTile):
