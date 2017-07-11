@@ -19,6 +19,10 @@ You need to have `python2.7`, `pygame`, and `numpy` installed.
 - `middle click` and `drag` to move camera around.
 - `up arrow`, `down arrow`, `left arrow`, `right arrow` will also move the camera.
 
+I've included a sample tileset in `assets/` called `hexes.png`. To load it, 
+press `i` navigate and open to `assets/hexes.png`. Click around on the screen
+to start placing tiles.
+
 ## Authors
 
 * **Norbu Tsering** 
