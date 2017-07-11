@@ -9,6 +9,11 @@ You need to have `python2.7`, `pygame`, and `numpy` installed.
 
 ## Using HexTiler
 
+To run the application, execute the `hex_tiler.py` file.
+```
+python2 hex_tiler.py
+```
+
 - load tilesets with `i`.
 - load tilemaps with `l`.
 - save tilemaps with `s`.
