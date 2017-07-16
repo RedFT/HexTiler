@@ -45,7 +45,7 @@ class HexTileEditor():
         try:
             self.hex_map[position] = [new_tile]
         except hx.HexExistsError:
-            self.hex_map.overwrite_entry(position.flatten(), new_tile)
+            self.hex_map.overwrite_entries(position, new_tile)
 
     def handle_events(self):
         running = True
@@ -121,7 +121,8 @@ class HexTileEditor():
         for hexagon in self.hex_map.values():
             if hexagon.tile_id < self.selector.num_imgs:
                 tile_img = self.selector[hexagon.tile_id]
-                draw_position = hexagon.position.flatten() - [tile_img.get_width() / 2, tile_img.get_height() / 2]
+                draw_position = hexagon.position.flatten() - \
+                        [tile_img.get_width() / 2, tile_img.get_height() / 2]
                 draw_position = self.camera.translate(draw_position)
                 self.main_surf.blit(tile_img, draw_position)
 
@@ -159,7 +160,7 @@ class HexTileEditor():
 
 
 if __name__ == '__main__':
-    ehm = HexTileEditor()
-    while ehm.update():
-        ehm.draw()
-    ehm.quit_app()
+    hte = HexTileEditor()
+    while hte.update():
+        hte.draw()
+    hte.quit_app()
