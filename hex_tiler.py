@@ -6,24 +6,28 @@ from tkFileDialog import askopenfilename, asksaveasfilename
 import hexy as hx
 import hextiler as ht
 
+SCREEN_WIDTH, SCREEN_HEIGHT = SCREEN_SIZE = np.array([800, 600])
+
+
+def initialize_pygame():
+    # Initialize PyGame
+    pg.init()
+    pg.font.init()
+
+    pg.display.set_caption("Hex Tile Editor")
+    main_surf = pg.display.set_mode(SCREEN_SIZE)
+    font = pg.font.SysFont("monospace", 12, True)
+    clock = pg.time.Clock()
+    return main_surf, font, clock
+
 
 class HexTileEditor():
-    def __init__(self, size=(800, 600), hex_radius=16, caption="Hex Tile Editor"):
-        self.size = np.array(size)
+    def __init__(self, hex_radius=16):
         self.hex_radius = hex_radius
-        self.caption = caption
 
-        # Initialize PyGame
-        pg.init()
-        self.main_surf = pg.display.set_mode(self.size, pg.RESIZABLE)
-        pg.display.set_caption(self.caption)
+        self.main_surf, self.font, self.clock = initialize_pygame()
 
-        pg.font.init()
-        self.font = pg.font.SysFont("monospace", 12, True)
-        self.clock = pg.time.Clock()
-
-        self.width, self.height = self.size
-        self.camera = ht.Camera(-self.size / 2)
+        self.camera = ht.Camera(-SCREEN_SIZE / 2)
         self.first_click = np.array([0, 0])
         self.scrolling = False
 
@@ -119,10 +123,10 @@ class HexTileEditor():
     def draw(self):
         # show all hexes
         for hexagon in self.hex_map.values():
-            if hexagon.tile_id < self.selector.num_imgs:
+            if hexagon.tile_id < self.selector.num_imgs:  # validate tile id
                 tile_img = self.selector[hexagon.tile_id]
                 draw_position = hexagon.position.flatten() - \
-                        [tile_img.get_width() / 2, tile_img.get_height() / 2]
+                                [tile_img.get_width() / 2, tile_img.get_height() / 2]
                 draw_position = self.camera.translate(draw_position)
                 self.main_surf.blit(tile_img, draw_position)
 
@@ -145,11 +149,11 @@ class HexTileEditor():
 
         bar_text = "Camera Pos: [%d, %d] Cursor: [%.2f, %+.2f]" % \
                    (self.camera.position[0], self.camera.position[1],
-                   self.cursor.mouse_hex.flatten()[0], self.cursor.mouse_hex.flatten()[1])
+                    self.cursor.mouse_hex.flatten()[0], self.cursor.mouse_hex.flatten()[1])
         bar_surface = self.font.render(
             bar_text,
             True, (50, 50, 50))
-        self.main_surf.blit(bar_surface, (2, self.size[1] - bar_surface.get_height()))
+        self.main_surf.blit(bar_surface, (2, SCREEN_SIZE[1] - bar_surface.get_height()))
 
         pg.display.update()
         self.main_surf.fill([200, 200, 200])
