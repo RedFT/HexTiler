@@ -2,6 +2,8 @@
 
 A Hexagon Tiling Application
 
+![Alt text](/HexTiler.gif?raw=true "Short Demo")
+
 ### Prerequisites
 
 You need to have `python2.7`, `pygame`, and `numpy` installed.
