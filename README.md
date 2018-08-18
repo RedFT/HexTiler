@@ -1,6 +1,6 @@
 # HexTiler
 
-A Hexagon Tiling Application
+An example hexagon tiling application showcasing the Hexy library.
 
 ![Alt text](/HexTiler.gif?raw=true "Short Demo")
 
